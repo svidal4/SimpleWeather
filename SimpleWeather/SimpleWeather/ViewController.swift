@@ -12,6 +12,19 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet var labelTemp: UILabel?
+    @IBOutlet weak var cityName: UILabel!
+    @IBOutlet weak var tempMax: UILabel!
+    @IBOutlet weak var tempMin: UILabel!
+    @IBOutlet weak var pressure: UILabel!
+    @IBOutlet weak var humidity: UILabel!
+    @IBOutlet weak var rainThreeH: UILabel!
+    
+    @IBOutlet weak var mainDescription: UILabel!
+    @IBOutlet weak var mainIcon: UIImageView!
+    
+    var model = Model()
+    
+    //var fillTemp: Int = 0
     
     enum JSONError: String, ErrorType {
         case NoData = "ERROR: no data"
@@ -37,20 +50,75 @@ class ViewController: UIViewController {
                 guard let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary else {
                     throw JSONError.ConversionFailed
                 }
-//                let result2 = (json["temp"] as! String)
-//                self.labelTemp?.text = result2
+
                 
-                //let a=1
+                let list = json.objectForKey("list") as? [[String:AnyObject]]
+                let element = list![0]
+                let weather = element["main"]
+                let temp = weather!["temp"] as! Int
+                // self.fillTemp = temp
+                self.labelTemp?.text = String(temp)
+               
                 
-                 let list = json.objectForKey("list") as? [[String:AnyObject]]
-                    let element = list![0] as! Dictionary
-                        let weather = element["main"]
-                        let temp = weather!["temp"] as! Int
-                        self.labelTemp?.text = String(temp)
-             
-                                print("************************")
-                                print("finished downloading data " + String(json))
+           
+                let city = json.objectForKey("city") as? NSDictionary?
+                let nameCity = city!!.objectForKey("name") as! String?
+                self.cityName.text? = (String?(nameCity!.uppercaseString))!
                 
+                
+                let tempMinList = json.objectForKey("list") as? [[String:AnyObject]?]
+                let elementTempMinList = tempMinList![0]
+                let tempMinMain = elementTempMinList!["main"]
+                let tempMin = tempMinMain!["temp_min"] as! Int
+                self.tempMin?.text = String(tempMin)
+                
+                
+                let tempMaxList = json.objectForKey("list") as? [[String:AnyObject]?]
+                let elementTempMaxList = tempMaxList![0]
+                let tempMaxMain = elementTempMaxList!["main"]
+                let tempMax = tempMaxMain!["temp_max"] as! Int
+                self.tempMax?.text = String(tempMax)
+                
+                
+                let pressureList = json.objectForKey("list") as? [[String:AnyObject]?]
+                let elementpressureList = pressureList![0]
+                let pressureMain = elementpressureList!["main"]
+                let pressure = pressureMain!["pressure"] as! Float
+                self.pressure?.text = String(pressure) + "hPa"
+                
+                
+                let humidityList = json.objectForKey("list") as? [[String:AnyObject]?]
+                let elementhumidityList = humidityList![0]
+                let humidityMain = elementhumidityList!["main"]
+                let humidity = humidityMain!["humidity"] as! Int
+                self.humidity?.text = String(humidity) + "%"
+
+                
+                let mainDescriptionList = json.objectForKey("list") as? [[String:AnyObject]?]
+                let elementmainDescriptionList = mainDescriptionList![0]
+                let mainDescriptionWeather = elementmainDescriptionList!["weather"]
+                //let elementmainDescriptionInsideWeather = mainDescriptionWeather[0]
+                let mainDescription = mainDescriptionWeather!["description"] as! String
+                self.mainDescription?.text = String?(mainDescription.capitalizedString)
+
+                if tempMax != 0 {
+                    print("something is nil")
+                }
+                if tempMin != 0 {
+                    print("something is nil")
+                }
+                if temp != 0 {
+                    print("something is nil")
+                }
+                if humidity != 0 {
+                    print("something is nil")
+                }
+                if pressure != 0 {
+                    print("something is nil")
+                }
+                
+                
+                self.model.saveJson(json) //le pase el json al Model
                 
                             } catch let error as NSError {
                                 print("Failed to load: \(error.localizedDescription)")
@@ -59,12 +127,10 @@ class ViewController: UIViewController {
                 
                             } .resume()
 
-                
+        
         
     }
-    
  
-    
     
     override func viewDidLoad() {
     
@@ -74,8 +140,10 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-      
+     
         super.viewDidAppear(true)
+    
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		647C184D1CE3BB140093B3C7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647C184C1CE3BB140093B3C7 /* Model.swift */; };
 		64D1A31E1CDA94AD008A7FB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1A31D1CDA94AD008A7FB2 /* AppDelegate.swift */; };
 		64D1A3201CDA94AD008A7FB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1A31F1CDA94AD008A7FB2 /* ViewController.swift */; };
 		64D1A3231CDA94AD008A7FB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D1A3211CDA94AD008A7FB2 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		647C184C1CE3BB140093B3C7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		64D1A31A1CDA94AD008A7FB2 /* SimpleWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D1A31D1CDA94AD008A7FB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64D1A31F1CDA94AD008A7FB2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		64D1A31C1CDA94AD008A7FB2 /* SimpleWeather */ = {
 			isa = PBXGroup;
 			children = (
+				647C184C1CE3BB140093B3C7 /* Model.swift */,
 				64E987AD1CE241A100A1CD2B /* ufonts.com_futuralt-condensedextrabold-opentype.otf */,
 				64E987AB1CE23FEB00A1CD2B /* ufonts.com_futuralt-book-opentype.otf */,
 				64E987A91CE23F1200A1CD2B /* futuralt-extrabold-opentype.otf */,
@@ -284,6 +287,7 @@
 				64D1A3201CDA94AD008A7FB2 /* ViewController.swift in Sources */,
 				9E79A36F1CDEDD0E00A5C984 /* mainWeather.swift in Sources */,
 				9E79A36D1CDEDA9000A5C984 /* cityName.swift in Sources */,
+				647C184D1CE3BB140093B3C7 /* Model.swift in Sources */,
 				9E79A3711CDEE1A700A5C984 /* Rain.swift in Sources */,
 				64D1A31E1CDA94AD008A7FB2 /* AppDelegate.swift in Sources */,
 			);
